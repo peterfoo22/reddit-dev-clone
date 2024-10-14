@@ -59,6 +59,7 @@ model Topic {
   slug        String @unique
   description String
   posts       Post[]
+  name        String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
