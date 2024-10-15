@@ -1,5 +1,6 @@
 "use server";
-
+import { revalidatePath } from "next/cache";
+import paths from "../paths";
 import { db } from "@/db";
 import { z } from "zod";
 
@@ -9,6 +10,11 @@ const createTopicSchema = z.object({
 });
 
 export async function createTopicAction(formData: FormData) {
+  const name = formData.get("name");
+  const description = formData.get("description");
+
+
+  console.log(name, description);
  
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
