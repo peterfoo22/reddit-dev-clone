@@ -5,7 +5,7 @@ import { createTopicAction } from "@/app/actions/create-topic";
 
 export default function TopicCreateForm() {
 
-  const [state, formAction] = useFormState(createTopicAction, { errors: {} });
+  const [formState, formAction] = useFormState(createTopicAction, { errors: {} });
 
   return (
     <Popover placement="bottom-end">
@@ -13,11 +13,17 @@ export default function TopicCreateForm() {
         <Button color="primary">Create Topic</Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px]">
-        <form action={formAction} className="flex flex-col gap-4">  
+        <form action={formAction} className="flex flex-col gap-4">
           <h3 className="text-lg font-bold">Create a new topic</h3>
-          <Input name="name" label="Name" labelPlacement="outside" />
-          <Textarea name="description" label="Description" labelPlacement="outside" />
-          <Button type="submit" color="primary">Create</Button> 
+          <Input name="name" label="Name" isInvalid={!!formState.errors.name} errorMessage={formState.errors.name?.join(", ")} labelPlacement="outside" />
+
+          <Textarea name="description" label="Description" isInvalid={!!formState.errors.description} errorMessage={formState.errors.description?.join(", ")} labelPlacement="outside" />
+          
+          {formState.errors._form && formState.errors._form.map((error) => (
+            <p key={error} className="text-sm text-red-500">{error}</p>
+          ))}
+
+          <Button type="submit" color="primary">Create</Button>
         </form>
       </PopoverContent>
     </Popover>
