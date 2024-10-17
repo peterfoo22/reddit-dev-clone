@@ -27,6 +27,8 @@ export async function createTopicAction(formState:CreateTopicFormState,  formDat
     description: formData.get("description"),
   });
 
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   if (!result.success) {
     return { errors: result.error.flatten().fieldErrors };
   }
