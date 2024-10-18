@@ -2,6 +2,7 @@
 import { Input, Button, Textarea, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import { createTopicAction } from "@/app/actions/create-topic";
+import {FormButton} from "@/components/common/form-button";
 
 export default function TopicCreateForm() {
 
@@ -23,7 +24,9 @@ export default function TopicCreateForm() {
             <p key={error} className="text-sm text-red-500">{error}</p>
           ))}
 
-          <Button type="submit" color="primary">Create</Button>
+          <div className="flex justify-end">
+            <FormButton onClick={() => {}} type="submit">Create</FormButton>
+          </div>
         </form>
       </PopoverContent>
     </Popover>
