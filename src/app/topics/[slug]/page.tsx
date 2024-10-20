@@ -1,5 +1,5 @@
-import React from 'react';
-import PostCreateForm from './posts/post-create-form';
+import React from "react";
+import PostCreateForm from "./posts/post-create-form";
 
 interface TopicShowProps {
   params: {
@@ -16,7 +16,7 @@ function TopicShow({ params }: TopicShowProps) {
         <h1 className="text-2xl font-bold mb-2">{decodedSlug}</h1>
       </div>
       <div className="col-span-3">
-        <PostCreateForm />
+        <PostCreateForm slug={decodedSlug} />
       </div>
     </div>
   );
